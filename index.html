@@ -49,6 +49,13 @@ button{cursor:pointer}
 #hdr h1{margin:0;font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.05;font-weight:700;letter-spacing:-.025em}
 #hdr .sub{margin:4px 0 0;color:var(--ink2);font-size:1.02rem}
 #hdr .hi{margin:0 0 2px;color:var(--fjord);font-weight:650;font-size:1rem}
+#hdr{position:relative}
+.syncchip{position:absolute;right:0;top:0;border:0;background:var(--surface);box-shadow:var(--shadow);border-radius:999px;padding:5px 11px 5px 9px;font-size:.8rem;font-weight:650;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.syncchip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink2);opacity:.5}
+.syncchip.s-ok::before{background:var(--moss);opacity:1}
+.syncchip.s-busy::before{background:var(--fjord);opacity:1}
+.syncchip.s-err::before,.syncchip.s-auth::before{background:var(--brick);opacity:1}
+.syncchip.s-offline::before{background:var(--sun);opacity:1}
 
 /* tabs */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:4px;justify-content:center;
@@ -109,7 +116,7 @@ main{display:grid;gap:14px;margin-top:14px}
 .fld{display:grid;gap:4px;min-width:0}
 .fld>span{font-size:.84rem;font-weight:650;color:var(--ink2)}
 .inp{display:flex;gap:6px}
-input[type=text],input[type=number],select,textarea{width:100%;min-width:0;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg)}
+input[type=text],input[type=number],input[type=password],select,textarea{width:100%;min-width:0;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg)}
 input.time{font-size:1.25rem;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:.02em}
 textarea{resize:vertical;min-height:44px}
 .mini{border:0;background:var(--fjord-soft);color:var(--fjord);font-weight:700;border-radius:10px;padding:0 12px;white-space:nowrap}
@@ -336,6 +343,16 @@ nn: {
  'imp.settings':'Fila har også innstillingar. Skal dei overskrive dine?','exported':'Fil lagra','reset.done':'Alt er sletta',
  'h.newyear':'Nyttårsdag','h.maundy':'Skjærtorsdag','h.good':'Langfredag','h.easter1':'Første påskedag','h.easter2':'Andre påskedag','h.may1':'1. mai',
  'h.may17':'Grunnlovsdagen','h.asc':'Kristi himmelfartsdag','h.pent1':'Første pinsedag','h.pent2':'Andre pinsedag','h.xmas1':'Første juledag','h.xmas2':'Andre juledag',
+ 'sync.title':'Synk mellom einingar','sync.desc':'Koplar appen til din eigen gratis Supabase-konto, så telefon og PC viser det same. Oppsettet står i rettleiinga.',
+ 'sync.url':'Prosjekt-URL','sync.key':'Publishable key (eller anon key)','sync.email':'E-post','sync.pw':'Passord',
+ 'sync.login':'Logg inn og synk','sync.logout':'Logg ut','sync.now':'Synk no','sync.link':'Kopier oppsettlenkje til telefon',
+ 'sync.as':'Innlogga som {e}','sync.last':'Sist synka {t}','sync.never':'Ikkje synka endå','sync.busy':'Synkar …',
+ 'sync.offline':'Utan nett. Synkar når du er på nett igjen.','sync.err':'Synk feila: {m}','sync.auth':'Logg inn på nytt for å synke.',
+ 'sync.badlogin':'Feil e-post eller passord','sync.badurl':'URL-en må starte med https://','sync.fill':'Fyll ut alle felta',
+ 'sync.linked':'Oppsett henta frå lenkja. Skriv inn passordet og logg inn.','sync.notables':'Tabellane manglar. Køyr SQL-fila frå rettleiinga.',
+ 'sync.loggedout':'Logga ut. Dataa ligg framleis på eininga.','sync.paste':'Lim inn oppsettlenkje frå den andre eininga','sync.paste.btn':'Bruk lenkje','sync.badlink':'Lenkja ser ikkje rett ut','sync.or':'Eller fyll ut sjølv:','sync.linkhint':'Lenkja inneheld URL, nøkkel og e-post, ikkje passordet. Send ho berre til deg sjølv.',
+ 'sync.chip.idle':'Synk','sync.chip.ok':'Synka','sync.chip.busy':'Synkar','sync.chip.offline':'Utan nett','sync.chip.err':'Synkfeil','sync.chip.auth':'Logg inn',
+ 'set.danger.sync':'Dette slettar alle registreringar på denne eininga. Med synk på blir dei henta frå skya att ved neste synk. Heilt sikker?',
  'weekdayTpl':'{wd} {d}. {m}','tm.ph':'t.d. 815','closeLbl':'Lukk','weekLbl':'Veke {w}'
 },
 nb: {
@@ -362,7 +379,16 @@ nb: {
  'set.danger':'Slett alle data','set.danger.confirm':'Dette sletter alle registreringer og innstillinger på denne enheten. Helt sikker?',
  'imp.ok':'{n} dager importert','imp.bad':'Filen ser ikke ut som en gyldig timeføringsfil','imp.confirm':'Fant {n} dager. Slå sammen med det som ligger i appen? Samme dato blir overskrevet.',
  'imp.settings':'Filen har også innstillinger. Skal de overskrive dine?','exported':'Fil lagret','reset.done':'Alt er slettet',
- 'h.easter1':'Første påskedag','h.may1':'Arbeidernes dag','weekLbl':'Uke {w}','closeLbl':'Lukk'
+ 'h.easter1':'Første påskedag','h.may1':'Arbeidernes dag','weekLbl':'Uke {w}','closeLbl':'Lukk',
+ 'sync.title':'Synk mellom enheter','sync.desc':'Kobler appen til din egen gratis Supabase-konto, så telefon og PC viser det samme. Oppsettet står i veiledningen.',
+ 'sync.key':'Publishable key (eller anon key)','sync.email':'E-post','sync.pw':'Passord','sync.login':'Logg inn og synk','sync.logout':'Logg ut',
+ 'sync.link':'Kopier oppsettlenke til telefon','sync.as':'Innlogget som {e}','sync.last':'Sist synket {t}','sync.never':'Ikke synket ennå','sync.busy':'Synker …',
+ 'sync.offline':'Uten nett. Synker når du er på nett igjen.','sync.err':'Synk feilet: {m}','sync.auth':'Logg inn på nytt for å synke.',
+ 'sync.badlogin':'Feil e-post eller passord','sync.badurl':'URL-en må starte med https://','sync.fill':'Fyll ut alle feltene',
+ 'sync.linked':'Oppsett hentet fra lenken. Skriv inn passordet og logg inn.','sync.notables':'Tabellene mangler. Kjør SQL-filen fra veiledningen.',
+ 'sync.loggedout':'Logget ut. Dataene ligger fortsatt på enheten.','sync.paste':'Lim inn oppsettlenke fra den andre enheten','sync.paste.btn':'Bruk lenke','sync.badlink':'Lenken ser ikke riktig ut','sync.or':'Eller fyll ut selv:','sync.linkhint':'Lenken inneholder URL, nøkkel og e-post, ikke passordet. Send den bare til deg selv.',
+ 'sync.chip.ok':'Synket','sync.chip.busy':'Synker','sync.chip.offline':'Uten nett','sync.chip.err':'Synkfeil','sync.chip.auth':'Logg inn',
+ 'set.danger.sync':'Dette sletter alle registreringer på denne enheten. Med synk på hentes de fra skyen igjen ved neste synk. Helt sikker?'
 }};
 const WD = { nn: ['Måndag','Tysdag','Onsdag','Torsdag','Fredag','Laurdag','Søndag'], nb: ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'] };
 const WDS = { nn: ['Man','Tys','Ons','Tor','Fre','Lau','Søn'], nb: ['Man','Tir','Ons','Tor','Fre','Lør','Søn'] };
@@ -372,18 +398,21 @@ const MONS = ['jan','feb','mars','apr','mai','juni','juli','aug','sep','okt','no
 /* ================= LAGRING ================= */
 const KEY = 'timeforing.v1';
 const defaults = () => ({ v: 1, settings: { norm: 7.5, lunch: 20, lunchDefault: true, lunchStart: '11:00', flexStart: 0,
-  showST: true, lang: 'nn', name: '', vac: {} }, days: {} });
+  showST: true, lang: 'nn', name: '', vac: {} }, days: {}, tomb: {}, settingsU: 0 });
 function normalizeDB(o) {
   const base = defaults();
   if (!o || typeof o !== 'object') return base;
   base.settings = Object.assign(base.settings, o.settings || {});
   if (!base.settings.vac || typeof base.settings.vac !== 'object') base.settings.vac = {};
   base.days = (o.days && typeof o.days === 'object') ? o.days : {};
+  base.tomb = (o.tomb && typeof o.tomb === 'object') ? o.tomb : {};
+  base.settingsU = Number(o.settingsU) || 0;
   return base;
 }
 function loadDB() { try { const raw = localStorage.getItem(KEY); if (raw) return normalizeDB(JSON.parse(raw)); } catch (e) {} return defaults(); }
 let _persisted = false;
-function save() {
+function save() { persist(); queueSync(); }
+function persist() {
   try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { toast('Klarte ikkje lagre – er lagringa full?'); }
   if (!_persisted && navigator.storage && navigator.storage.persist) { _persisted = true; navigator.storage.persist().catch(() => {}); }
 }
@@ -428,7 +457,8 @@ function setDay(ds, patch) {
   if (!d) d = { type: 'work', lunch: S().lunchDefault };
   d = Object.assign({}, d, patch);
   for (const k of Object.keys(d)) if (d[k] === '' || d[k] === undefined || d[k] === null) delete d[k];
-  if (!d.in && !d.out && !d.note && (!d.type || d.type === 'work') && !d.ot) delete DB.days[ds]; else DB.days[ds] = d;
+  if (!d.in && !d.out && !d.note && (!d.type || d.type === 'work') && !d.ot) { if (DB.days[ds]) DB.tomb[ds] = Date.now(); delete DB.days[ds]; }
+  else { d.u = Date.now(); DB.days[ds] = d; delete DB.tomb[ds]; }
   save(); render();
 }
 function weekData(mondayStr) {
@@ -464,6 +494,7 @@ function renderHeader() {
     const k = { week: 'nav.week', overview: 'nav.overview', settings: 'nav.settings' }[ui.view];
     h.innerHTML = `<h1>${t(k)}</h1>`;
   }
+  h.insertAdjacentHTML('beforeend', chipHTML());
 }
 function renderTabs() {
   $('#tabs').innerHTML = ['today', 'week', 'overview', 'settings'].map(v =>
@@ -649,7 +680,8 @@ function fldNum(label, key, val, sub) {
 }
 function viewSettings() {
   const s = S(), y = ui.vacYear, v = vacOf(y), used = vacUsed(y), left = v.rett + v.over - used - v.out;
-  return `<section class="card"><h2>${t('set.profile')}</h2><div class="setgrid">
+  return `${syncCard()}
+  <section class="card"><h2>${t('set.profile')}</h2><div class="setgrid">
     <label class="fld"><span>${t('set.name')}</span><input type="text" data-s="name" value="${esc(s.name)}" autocomplete="off"></label>
     <label class="fld"><span>${t('set.lang')}</span><select data-s="lang"><option value="nn" ${s.lang === 'nn' ? 'selected' : ''}>Nynorsk</option><option value="nb" ${s.lang === 'nb' ? 'selected' : ''}>Bokmål</option></select></label>
     <label class="sw"><input type="checkbox" data-s="showST" ${s.showST ? 'checked' : ''}><span>${t('set.showST')}</span></label></div></section>
@@ -667,7 +699,7 @@ function viewSettings() {
     <button class="btn ghost" data-act="import">${t('set.import')}</button></div>
     <input type="file" id="file" accept=".json,application/json" hidden></section>
   <section class="card"><h2>${t('set.install')}</h2><p class="small muted" style="margin:0">${t('set.install.txt')}</p></section>
-  <section class="card"><button class="btn danger" data-act="reset">${t('set.danger')}</button><p class="small muted" style="margin:10px 0 0">Timeføring 1.0</p></section>`;
+  <section class="card"><button class="btn danger" data-act="reset">${t('set.danger')}</button><p class="small muted" style="margin:10px 0 0">Timeføring 1.1</p></section>`;
 }
 
 function renderModal() {
@@ -715,14 +747,191 @@ function importData(text) {
     if (d.lunchStart && parseTime(d.lunchStart)) c.lunchStart = parseTime(d.lunchStart);
     if (d.ot) c.ot = true;
     if (d.note) c.note = String(d.note).slice(0, 200);
+    c.u = Date.now();
     days[ds] = c;
   }
   const n = Object.keys(days).length;
   if (!n) { toast(t('imp.bad')); return; }
   if (!confirm(t('imp.confirm', { n }))) return;
   Object.assign(DB.days, days);
+  for (const k in days) delete DB.tomb[k];
   if (o.settings && o.kind === 'backup' && confirm(t('imp.settings'))) DB.settings = normalizeDB({ settings: o.settings }).settings;
   save(); render(); toast(t('imp.ok', { n }));
+}
+
+/* ================= SYNK (Supabase) ================= */
+const SKEY = 'timeforing.sync';
+let SY = (() => { try { return JSON.parse(localStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } })();
+const saveSY = () => { try { localStorage.setItem(SKEY, JSON.stringify(SY)); } catch (e) {} };
+const syncState = { status: (SY.url && !SY.access) ? 'auth' : 'idle', msg: '' };
+const syncReady = () => !!(SY.url && SY.key && SY.access);
+const hhmm = ms => { const d = new Date(ms); return pad2(d.getHours()) + ':' + pad2(d.getMinutes()); };
+const effStatus = () => (syncState.status === 'idle' && SY.last) ? 'ok' : syncState.status;
+function syncLine() {
+  const st = effStatus();
+  if (st === 'busy') return t('sync.busy');
+  if (st === 'offline') return t('sync.offline');
+  if (st === 'auth') return t('sync.auth');
+  if (st === 'err') return t('sync.err', { m: esc(syncState.msg) });
+  return SY.last ? t('sync.last', { t: hhmm(SY.last) }) : t('sync.never');
+}
+function chipHTML() {
+  if (!SY.url) return '';
+  const st = effStatus();
+  return `<button class="syncchip s-${st}" id="syncchip" data-act="tab" data-v="settings">${t('sync.chip.' + st)}</button>`;
+}
+function paintSync() {
+  const st = effStatus(), c = $('#syncchip'), l = $('#syncline');
+  if (c) { c.className = 'syncchip s-' + st; c.textContent = t('sync.chip.' + st); }
+  if (l) l.innerHTML = syncLine();
+}
+function setSync(status, msg) { syncState.status = status; syncState.msg = msg || ''; paintSync(); }
+function syncLink() {
+  const j = { u: SY.url, k: SY.key, e: SY.email };
+  return location.origin + location.pathname + '#sync=' + btoa(unescape(encodeURIComponent(JSON.stringify(j))));
+}
+function applySyncLink(txt) {
+  const m = String(txt || '').match(/#?sync=([A-Za-z0-9+\/=_-]+)/);
+  if (!m) return false;
+  try {
+    const j = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
+    if (j && /^https:\/\/[^\s/]+$/.test(j.u) && j.k) { SY = { url: j.u, key: j.k, email: j.e || '', last: 0 }; saveSY(); syncState.status = 'auth'; return true; }
+  } catch (e) {}
+  return false;
+}
+function syncCard() {
+  if (syncReady()) {
+    return `<section class="card"><h2>${t('sync.title')}</h2>
+      <p class="small" id="syncline" style="margin:0 0 4px">${syncLine()}</p>
+      <p class="small muted" style="margin:0 0 12px">${t('sync.as', { e: esc(SY.email || '') })}</p>
+      <div class="row"><button class="btn" data-act="sy-now">${t('sync.now')}</button><button class="btn ghost" data-act="sy-link">${t('sync.link')}</button><button class="btn ghost" data-act="sy-logout">${t('sync.logout')}</button></div></section>`;
+  }
+  return `<section class="card"><h2>${t('sync.title')}</h2><p class="small muted" style="margin-top:0">${t('sync.desc')}</p>
+    ${SY.url ? `<p class="note warn" id="syncline" style="margin-bottom:12px">${syncLine()}</p>` : ''}
+    <div class="setgrid">
+      <label class="fld"><span>${t('sync.paste')}</span><div class="inp"><input type="text" id="sy-paste" autocapitalize="off" autocomplete="off" placeholder="https://…#sync=…"><button type="button" class="mini" data-act="sy-paste">${t('sync.paste.btn')}</button></div></label>
+      <p class="small muted" style="margin:0">${t('sync.or')}</p>
+      <label class="fld"><span>${t('sync.url')}</span><input type="text" id="sy-url" inputmode="url" autocapitalize="off" autocomplete="off" placeholder="https://abcdefgh.supabase.co" value="${esc(SY.url || '')}"></label>
+      <label class="fld"><span>${t('sync.key')}</span><input type="text" id="sy-key" autocapitalize="off" autocomplete="off" value="${esc(SY.key || '')}"></label>
+      <label class="fld"><span>${t('sync.email')}</span><input type="text" id="sy-email" inputmode="email" autocapitalize="off" autocomplete="username" value="${esc(SY.email || '')}"></label>
+      <label class="fld"><span>${t('sync.pw')}</span><input type="password" id="sy-pw" autocomplete="current-password"></label>
+      <div class="row"><button class="btn" data-act="sy-login">${t('sync.login')}</button></div>
+    </div></section>`;
+}
+
+function applySession(j) {
+  SY.access = j.access_token; SY.refresh = j.refresh_token; SY.exp = Date.now() + (j.expires_in || 3600) * 1000;
+  if (j.user) { SY.uid = j.user.id; SY.email = j.user.email || SY.email; }
+  saveSY();
+}
+async function signIn(email, pw) {
+  let res;
+  try {
+    res = await fetch(SY.url + '/auth/v1/token?grant_type=password', { method: 'POST', headers: { apikey: SY.key, 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password: pw }) });
+  } catch (e) { throw new Error(t('sync.offline')); }
+  const j = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error((res.status === 400 || res.status === 401) ? t('sync.badlogin') : (j.msg || j.error_description || 'HTTP ' + res.status));
+  applySession(j);
+}
+async function refreshToken() {
+  const res = await fetch(SY.url + '/auth/v1/token?grant_type=refresh_token', { method: 'POST', headers: { apikey: SY.key, 'Content-Type': 'application/json' }, body: JSON.stringify({ refresh_token: SY.refresh }) });
+  if (!res.ok) throw Object.assign(new Error('auth'), { auth: true });
+  applySession(await res.json());
+}
+function rawApi(path, opt = {}) {
+  return fetch(SY.url + path, { method: opt.method || 'GET',
+    headers: Object.assign({ apikey: SY.key, Authorization: 'Bearer ' + SY.access, 'Content-Type': 'application/json' }, opt.headers || {}),
+    body: opt.body ? JSON.stringify(opt.body) : undefined });
+}
+async function api(path, opt) {
+  if (SY.exp && Date.now() > SY.exp - 60000 && SY.refresh) await refreshToken();
+  let res = await rawApi(path, opt);
+  if (res.status === 401 && SY.refresh) { await refreshToken(); res = await rawApi(path, opt); }
+  if (res.status === 401) throw Object.assign(new Error('auth'), { auth: true });
+  return res;
+}
+async function httpFail(res) {
+  const txt = await res.text().catch(() => '');
+  if (res.status === 404 || /PGRST20[0-9]|does not exist|schema cache/i.test(txt)) return new Error(t('sync.notables'));
+  return new Error('HTTP ' + res.status + ' ' + txt.slice(0, 100));
+}
+async function upsert(table, rows, conflict) {
+  for (let i = 0; i < rows.length; i += 200) {
+    const res = await api(`/rest/v1/${table}?on_conflict=${conflict}`, { method: 'POST', body: rows.slice(i, i + 200), headers: { Prefer: 'resolution=merge-duplicates,return=minimal' } });
+    if (!res.ok) throw await httpFail(res);
+  }
+}
+const canon = o => JSON.stringify(Object.keys(o).sort().reduce((a, k) => (a[k] = o[k], a), {}));
+const stripU = d => { const c = Object.assign({}, d); delete c.u; return c; };
+
+let syncing = false, syncAgain = false, syncTimer = null;
+function queueSync(ms) { if (!syncReady()) return; clearTimeout(syncTimer); syncTimer = setTimeout(runSync, ms == null ? 1500 : ms); }
+async function runSync() {
+  if (!syncReady()) return;
+  if (syncing) { syncAgain = true; return; }
+  if (!navigator.onLine) { setSync('offline'); return; }
+  syncing = true; setSync('busy');
+  try {
+    // 1) hent frå skya
+    const remote = {}; let off = 0;
+    for (;;) {
+      const res = await api(`/rest/v1/tf_days?select=day,data,u,deleted&order=day&limit=1000&offset=${off}`);
+      if (!res.ok) throw await httpFail(res);
+      const rows = await res.json();
+      for (const r of rows) remote[r.day] = r;
+      if (rows.length < 1000) break; off += 1000;
+    }
+    const sres = await api('/rest/v1/tf_settings?select=data,u');
+    if (!sres.ok) throw await httpFail(sres);
+    const rs = (await sres.json())[0];
+
+    // 2) slå saman dag for dag (nyaste tidsstempel vinn)
+    const days = DB.days, tomb = DB.tomb, push = []; let changed = false;
+    for (const k of new Set([...Object.keys(remote), ...Object.keys(days), ...Object.keys(tomb)])) {
+      const r = remote[k], l = days[k];
+      const lu = l ? (l.u || 0) : (tomb[k] != null ? tomb[k] : -1);
+      const ru = r ? Number(r.u) : -1;
+      if (r && ru > lu) {
+        if (r.deleted) { if (days[k]) { delete days[k]; changed = true; } tomb[k] = ru; }
+        else { days[k] = Object.assign({}, r.data, { u: ru }); delete tomb[k]; changed = true; }
+      } else if (r && ru === lu && l && !r.deleted && canon(stripU(l)) !== canon(r.data || {})) {
+        days[k] = Object.assign({}, r.data, { u: ru }); changed = true;
+      } else if (l && (!r || lu > ru)) {
+        push.push({ user_id: SY.uid, day: k, data: stripU(l), u: lu, deleted: false });
+      } else if (!l && r && !r.deleted && lu > ru) {
+        push.push({ user_id: SY.uid, day: k, data: null, u: lu, deleted: true });
+      }
+    }
+    // innstillingar
+    let su = DB.settingsU || 0; let pushSet = null;
+    // Første synk: har du alt endra innstillingar lokalt (og skya har ingen), skal dei med.
+    if (!rs && !su && canon(DB.settings) !== canon(defaults().settings)) { su = DB.settingsU = Date.now(); changed = true; }
+    if (rs && Number(rs.u) > su) { DB.settings = normalizeDB({ settings: rs.data }).settings; DB.settingsU = Number(rs.u); changed = true; }
+    else if (su > 0 && (!rs || su > Number(rs.u))) pushSet = { user_id: SY.uid, data: DB.settings, u: su };
+
+    // 3) send det som er nyare lokalt
+    if (push.length) await upsert('tf_days', push, 'user_id,day');
+    if (pushSet) await upsert('tf_settings', [pushSet], 'user_id');
+    if (changed) { persist(); if (!document.activeElement || !document.activeElement.matches('input,select,textarea')) render(); }
+    SY.last = Date.now(); saveSY(); setSync('ok');
+  } catch (e) {
+    if (e && e.auth) { SY.access = ''; saveSY(); setSync('auth'); if (ui.view === 'settings' && !document.activeElement.matches('input')) render(); }
+    else if (e instanceof TypeError || !navigator.onLine) setSync('offline');
+    else setSync('err', e && e.message || String(e));
+  } finally {
+    syncing = false;
+    if (syncAgain) { syncAgain = false; queueSync(300); }
+  }
+}
+async function doLogin() {
+  const v = id => ($('#' + id) ? $('#' + id).value.trim() : '');
+  const url = (v('sy-url') || SY.url || '').replace(/\/+$/, ''), key = v('sy-key') || SY.key || '', email = v('sy-email') || SY.email || '';
+  const pw = $('#sy-pw') ? $('#sy-pw').value : '';
+  if (!url || !key || !email || !pw) { toast(t('sync.fill')); return; }
+  if (!/^https:\/\/[^\s/]+$/.test(url)) { toast(t('sync.badurl')); return; }
+  SY = { url, key, email, last: SY.last || 0 }; saveSY(); setSync('busy');
+  try { await signIn(email, pw); } catch (e) { setSync('auth'); toast(e.message); return; }
+  render(); runSync();
 }
 
 /* ================= HENDINGAR ================= */
@@ -745,7 +954,7 @@ document.addEventListener('click', e => {
     case 'type': setDay(ds, { type: el.dataset.v }); break;
     case 'edit': ui.modal = el.dataset.date; render(); break;
     case 'closeModal': ui.modal = null; render(); break;
-    case 'delday': if (confirm(t('delconfirm'))) { delete DB.days[ui.modal]; ui.modal = null; save(); render(); } break;
+    case 'delday': if (confirm(t('delconfirm'))) { DB.tomb[ui.modal] = Date.now(); delete DB.days[ui.modal]; ui.modal = null; save(); render(); } break;
     case 'wk': ui.week = iso(addDays(fromISO(ui.week), 7 * +el.dataset.n)); render(); break;
     case 'wk-today': ui.week = iso(mondayOf(new Date())); render(); break;
     case 'weekend': ui.weekend = !ui.weekend; render(); break;
@@ -762,7 +971,12 @@ document.addEventListener('click', e => {
     case 'export-json': saveFile('timeforing-sikkerheitskopi-' + todayISO() + '.json', JSON.stringify({ app: 'timeforing', kind: 'backup', version: 1, settings: DB.settings, days: DB.days }, null, 1), 'application/json'); break;
     case 'export-csv': saveFile('timeforing-' + todayISO() + '.csv', csvText(), 'text/csv'); break;
     case 'import': $('#file').click(); break;
-    case 'reset': if (confirm(t('set.danger.confirm'))) { DB = defaults(); save(); render(); toast(t('reset.done')); } break;
+    case 'sy-login': doLogin(); break;
+    case 'sy-paste': if (applySyncLink($('#sy-paste').value)) { render(); toast(t('sync.linked')); } else toast(t('sync.badlink')); break;
+    case 'sy-now': runSync(); break;
+    case 'sy-link': copyText(syncLink()); toast(t('sync.linkhint')); break;
+    case 'sy-logout': SY.access = ''; SY.refresh = ''; SY.exp = 0; saveSY(); setSync('auth'); render(); toast(t('sync.loggedout')); break;
+    case 'reset': if (confirm(SY.url ? t('set.danger.sync') : t('set.danger.confirm'))) { DB = defaults(); persist(); render(); toast(t('reset.done')); queueSync(); } break;
   }
 });
 document.addEventListener('change', e => {
@@ -771,7 +985,7 @@ document.addEventListener('change', e => {
   if (el.dataset.act === 'weekfill') {
     const type = el.value; if (!type) return;
     const data = weekData(ui.week); let n = 0;
-    for (const r of data.days) if (r.norm > 0 && !DB.days[r.ds]) { DB.days[r.ds] = { type }; n++; }
+    for (const r of data.days) if (r.norm > 0 && !DB.days[r.ds]) { DB.days[r.ds] = { type, u: Date.now() }; delete DB.tomb[r.ds]; n++; }
     save(); render(); toast(n ? t('filled', { n }) : t('nothingFilled')); return;
   }
   const f = el.dataset.f, sKey = el.dataset.s;
@@ -793,7 +1007,7 @@ document.addEventListener('change', e => {
       const x = num(el.value), v = vacOf(ui.vacYear);
       if (x !== null) { const k = { vacRett: 'rett', vacOver: 'over', vacOut: 'out' }[sKey]; v[k] = x; s.vac[ui.vacYear] = v; }
     } else { const x = num(el.value); if (x !== null && (sKey !== 'norm' || x > 0) && (sKey !== 'lunch' || x >= 0)) s[sKey] = x; }
-    save(); render();
+    DB.settingsU = Date.now(); save(); render();
   }
 });
 document.addEventListener('keydown', e => {
@@ -801,9 +1015,23 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.matches('input[type=text]')) e.target.blur();
 });
 setInterval(() => { if (ui.view === 'today' && !ui.modal && !document.activeElement.matches('input,select,textarea')) render(); }, 30000);
-document.addEventListener('visibilitychange', () => { if (!document.hidden && !document.activeElement.matches('input,select,textarea')) { ui.view === 'today' && (ui.week = iso(mondayOf(new Date()))); render(); } });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) return;
+  if (!document.activeElement.matches('input,select,textarea')) { ui.view === 'today' && (ui.week = iso(mondayOf(new Date()))); render(); }
+  queueSync(300);
+});
+window.addEventListener('online', () => queueSync(300));
+window.addEventListener('offline', () => syncReady() && setSync('offline'));
+setInterval(() => { if (!document.hidden) queueSync(0); }, 90000);
 
+// Oppsettlenkje: #sync=... fyller ut URL, nøkkel og e-post (aldri passord)
+(function () {
+  if (!location.hash) return;
+  if (applySyncLink(location.hash)) { ui.view = 'settings'; setTimeout(() => toast(t('sync.linked')), 400); }
+  history.replaceState(null, '', location.pathname + location.search);
+})();
 render();
+queueSync(600);
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>

@@ -1,6 +1,6 @@
 // Enkel service worker: appen fungerer utan nett.
 // Byt versjonsnummer under når du har oppdatert filene, så hentar telefonen nye.
-const CACHE = 'timeforing-v1';
+const CACHE = 'timeforing-v2';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -13,18 +13,24 @@ self.addEventListener('activate', e => {
       .then(() => self.clients.claim())
   );
 });
-// Vis frå cache med ein gong, og oppdater cachen i bakgrunnen.
 self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET') return;
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  // Kall til Supabase og andre domene skal aldri gå gjennom cachen.
+  if (new URL(req.url).origin !== location.origin) return;
+  const copyToCache = r => {
+    if (r && r.ok) { const copy = r.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
+    return r;
+  };
+  // Sjølve appen: prøv nett først (så oppdateringar kjem raskt), cache når du er utan nett.
+  if (req.mode === 'navigate') {
+    e.respondWith(fetch(req).then(copyToCache).catch(() => caches.match(req, { ignoreSearch: true }).then(h => h || caches.match('./index.html'))));
+    return;
+  }
+  // Ikon og manifest: vis frå cache med ein gong, oppdater i bakgrunnen.
   e.respondWith(
-    caches.match(e.request, { ignoreSearch: true }).then(hit => {
-      const net = fetch(e.request).then(r => {
-        if (r && r.ok && new URL(e.request.url).origin === location.origin) {
-          const copy = r.clone();
-          caches.open(CACHE).then(c => c.put(e.request, copy));
-        }
-        return r;
-      }).catch(() => hit);
+    caches.match(req, { ignoreSearch: true }).then(hit => {
+      const net = fetch(req).then(copyToCache).catch(() => hit);
       return hit || net;
     })
   );
